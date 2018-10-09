@@ -1,6 +1,9 @@
 package com.yelpCamp.controller;
 
 import java.util.Collection;
+import java.util.Date;
+
+import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yelpCamp.entity.Campground;
+import com.yelpCamp.entity.User;
 import com.yelpCamp.service.CampgroundService;
+import com.yelpCamp.service.UserService;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController	
 @RequestMapping("/campgrounds")
@@ -36,14 +44,15 @@ public class CampgroundController {
         campgroundService.deleteCampgroundById(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateCampground(@RequestBody Campground campground){
-        campgroundService.updateCampground(campground);
-    }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertCampground(@RequestBody Campground campground){
         campgroundService.insertCampground(campground);
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateCampground(@RequestBody Campground campground){
+        campgroundService.updateCampground(campground);
     }
 	
 

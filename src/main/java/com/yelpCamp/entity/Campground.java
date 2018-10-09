@@ -1,5 +1,6 @@
 package com.yelpCamp.entity;
 
+
 public class Campground {
     private int id;
     private String name;
